@@ -1,8 +1,17 @@
 .post {
     border: 1px solid grey;
     display: flex;
+    margin: 5px;
+    border-radius: 5px;
+
+}
+/* wszystkie podrzedne .post */
+.post > * {
+    padding: 5px;
 }
 
-.avatar {
+.post .avatar img {
+    max-height: 50px;
     /* width: 15%; */
+    border-radius: 50px;
 }
