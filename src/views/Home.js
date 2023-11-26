@@ -11,9 +11,9 @@ const Home = () => {
         //tym razem metoda post
         axios
         .post("http://akademia108.pl/api/social-app/post/latest")
-        .then((req)=>{
-           console.log(req);
-           setPosts(req.data)
+        .then((res)=>{
+        //    console.log(res);
+           setPosts(res.data)
         })
         .catch((error) => {
             console.warn(error);
@@ -22,16 +22,25 @@ const Home = () => {
     };
 
     const getOldestPosts = () => {
+        // console.log('getOldestPosts');
+        let dateOfLast= posts[posts.length-1].created_at
+        console.log(posts.length);
+        console.log("🚀 ~ file: Home.js:27 ~ getOldestPosts ~ dateOfLast:", dateOfLast)
+
         //tym razem metoda post
         axios
-        .post("http://akademia108.pl/api/social-app/post/older-then")
-        .then((req)=>{
-           console.log(req);
-           setPosts(req.data)
+        // .post("http://akademia108.pl/api/social-app/post/older-then",{"date": "2020-06-11T00:18:44.000000Z"})
+        .post("http://akademia108.pl/api/social-app/post/older-then",{"date": {dateOfLast}})
+        .then((res)=>{
+        //    console.log(res);
+           //do zmiennej posts dolaczamy nowe res.data
+           setPosts(posts.concat(res.data) );
         })
         .catch((error) => {
             console.warn(error);
         });
+        console.log("🚀 ~ file: Home.js:36 ~ getOldestPosts ~ axios:", axios)
+
         
     };
 
@@ -58,7 +67,8 @@ const Home = () => {
                 
 
             </div>
-            <button className="btn" onClick={()=>getOldestPosts}>  get more...</button>
+            <button className="btn btnLoadMore" onClick={()=>getOldestPosts()}>  get old more...</button>
+            <button className="btn" onClick={()=>getLatestPosts()}>  get latest more...</button>
 
         </div>
         ) 

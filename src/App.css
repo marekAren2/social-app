@@ -4,3 +4,21 @@
 a {
   color: black;
 }
+
+.btn {
+  border-radius: 5px;
+  /* background-color:  lightblue; */
+  background-color: #1d9bf0;
+  padding: 10px 15px;
+  /* margin-right: 20px; */
+  margin: 10px 10px;
+  font-weight: 700;
+  cursor:  pointer;
+  color: white;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #00538a;
+  cursor: pointer;
+}

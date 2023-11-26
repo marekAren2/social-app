@@ -8,11 +8,14 @@ import Signup from './views/Signup'; */
 
 
 function App() {
+  // 18:25 user setuser
+  //22:17 przy starcie pobieram z localSorage w f12/aplikacja
   return (
     <div className="App" >
       {/* //dlaczego Appnav przed AppRoutes? */}
       <AppNav/>
       <AppRoutes/> 
+      {/* //do routes przepuszczam */}
     </div>
   );
 }

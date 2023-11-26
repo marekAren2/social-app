@@ -4,19 +4,20 @@ import { useState } from "react";
 const Post = (props) => {
     
     
-    console.log('props.post przed props',props.post);
+    // console.log('props.post przed props',props.post);
     // console.log('postObject przed props',postObject.id);
     let postObject= props.post;
 
     const [likesCount, setLikesCount] = useState (postObject.likes.length)
 
-    console.log('post z postObject ' , postObject.id);
+    // console.log('post z postObject ' , postObject.id);
     // let props.post=props;
     // console.log("🚀 ~ file: props.post.js:4 ~ props.post ~ props.post:", props.post)
     // console.log(props.post.id);
     return (
      
         <div className="post" key={postObject.id}>
+            <p>{postObject.id}</p>
             <div className="avatar">
                 <img className="postImage" src={postObject.user.avatar_url} alt= {postObject.user.avatar_url}/>
             </div>    
