@@ -15,3 +15,30 @@
     /* width: 15%; */
     border-radius: 50px;
 }
+
+.post .postData {
+    /* // ASK a center nie zadziala */
+    width: 100%;
+}
+
+.post .postData .postMeta {
+    /* //27:49 react warszt 2.5     */
+    border: 1px solid gray;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.post .postData .postMeta .author {
+/* font-size: 700; */
+font-weight: 700;
+}
+
+.post .postData .postContent {
+text-align: left;
+padding: 5px;
+}
+
+.post .likes {
+    text-align: right;
+}

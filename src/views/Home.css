@@ -1,4 +1,6 @@
 .postList {
+    /* na potrzeby testow z 600px popraw na koniec projektu */
+    /* width: 450px; */
     width: 600px;
     margin: auto;
 }
