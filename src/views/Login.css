@@ -4,7 +4,7 @@
     max-width: 600px;
     margin: auto;
     /* //ASK: ten padding off  .login form jeszcze gorzej */
-    /* padding: 15px; */
+    padding: 15px;
     /* ASK: nic nie dale */
     /* display: block; */
     /* //ASK: align-it...do dzialania potzrebuje display: flex: ?; */
