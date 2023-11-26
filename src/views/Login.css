@@ -1,0 +1,31 @@
+.login form {
+    border: 1px solid grey;
+    /* //ASK : co to jest max-width: 600px; */
+    max-width: 600px;
+    margin: auto;
+    padding: 15px;
+    /* ASK: nic nie dale */
+    /* display: block; */
+    /* //ASK: align-it...do dzialania potzrebuje display: flex: ?; */
+    /* align-items: center; */
+}
+
+.login form input {
+    display: block;
+    /* //ASK: czego 100%? */
+    width: 100%;
+    /* text-align: center; */
+    /* ASK: bo nic nie daje */
+    /* margin: auto; */
+    /* //ASK: czemu po paddingu 10px 10px inputy wyszly poza form.login jest repo */
+    padding: 10px 10px;
+    /* ASK: czemu nic nie daje */
+    /* margin-top: auto; */
+    /* ASK: wyjechaly inputy za .login dlaczego? */
+    /* margin: 5px 5px; */
+    /* //ASK: jak moge wycentrowac inputy w .login bo display: block-size: ; */
+    /* m-b: 5px  z filmu 4:18 */
+    margin-bottom: 5px;
+    /* ASK: ni przeszkadza odstep z lewej a brak z prawej dla input-ow */
+
+}
