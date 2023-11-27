@@ -32,11 +32,11 @@ const Post = (props) => {
                 <div className="likes">{likesCount}</div>    
             </div>
             
-            {/* to beda postObjecty */}
+            {/* to beda postObiekty */}
             {/* {key} */}
             {/* <h3>{postObject.user.username}</h3> */}
             {/* <h4 style={{color: 'red'}}> {props.post.user.username}</h4> */}
-            {/* style={color: 'red';} blad bo ;*/}
+            {/* style={color: 'red';} error bo ;*/}
             {/* <p>{postObject.content}</p> */}
             {/* <p className="likeFooter">{postObject.likes.length}</p> */}
         </div>

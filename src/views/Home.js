@@ -33,7 +33,7 @@ const Home = () => {
         .post("http://akademia108.pl/api/social-app/post/older-then",{"date": {dateOfLast}})
         .then((res)=>{
         //    console.log(res);
-           //do zmiennej posts dolaczamy nowe res.data
+           //do zmiennej posts append nowe res.data
            setPosts(posts.concat(res.data) );
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ const Home = () => {
             
     }, [])
     
-    console.log('w useEfect',posts);
+    console.log('w useEffect',posts);
     return (
         <div className="home">
             <div className="postList">

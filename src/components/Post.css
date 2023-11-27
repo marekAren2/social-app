@@ -17,12 +17,12 @@
 }
 
 .post .postData {
-    /* // ASK a center nie zadziala */
+    /* // ASK a center nie work */
     width: 100%;
 }
 
 .post .postData .postMeta {
-    /* //27:49 react warszt 2.5     */
+    /* //27:49 react warsztat 2.5     */
     border: 1px solid gray;
     display: flex;
     padding: 5px;
