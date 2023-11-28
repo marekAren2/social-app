@@ -52,7 +52,9 @@ const Login = (props) => {
         // wczesniej 15:15 ASK: body wlasciwosc (prop) i wartosc (value) bez cudzyslow mozna tak nazywac?
         .post("http://akademia108.pl/api/social-app/user/login", {
           username: formData.username ,
-          password: formData.password
+          // 28:00 dodaje ',' bo szukam bledu logowania
+          // password: formData.password
+          password: formData.password,
         })
         .then((res)=>{
           // 24:53 test na tablice co to znaczy jak czytac
@@ -69,6 +71,8 @@ const Login = (props) => {
             setLoginMessage('incorrect username or password')
             //27:13
           } else
+          // 27:54 wreszcie czysci napis
+          setLoginMessage('')
           props.setUser(res.data);  
             // 20:11 wstawianie do LocaStorage dokoncz opis
           // localStorage.setItem('user', JSON.stringify(res.data));
@@ -81,7 +85,7 @@ const Login = (props) => {
           // props.setUser(res.data);
             //23: obsluga błędów error
            //  setPosts(res.data)
-          console.log('dostaje jwt_token');
+          // console.log('dostaje jwt_token');
         })
         .catch((error) => {
             console.warn(error);
@@ -102,7 +106,8 @@ const Login = (props) => {
       {/* // 29:34 jezeli user z props bedzie nie null wykonaj to co po prawej stronie*/}
       {/* // 31:00 its work? */}
        {/* // 30:26 co robie zle z h3 w props.user chyba nie ma nic? jak dzial ctrl i alt na prawy myszy na obiekcie */}
-       {/* <h3>{'props.user' ,props.user}</h3> */} jsx not coma . use
+       {/* <h3>{'props.user' ,props.user}</h3> */} 
+       {/* jsx not coma . use */}
       {props.user && <Navigate to="/"/>}
       {/* <form className="formLogin"  */}
       {/* // : when was change, zorientowałem sie w i change w 23:54 maybe now changes ? */}
