@@ -13,7 +13,8 @@ const AppRoutes = (props) => {
         <Routes>
             <Route path="/" element={<Home/>} />
             {/* // 19:12 przez props do Login */}
-            <Route path="/login" element={<Login setUser={props.setUser} />} />
+            {/* // 29:02 w AppRouters do Loginu user */}
+            <Route path="/login" element={<Login user={props.user} setUser={props.setUser} />} />
             {/* <Route path="/login" element={<Login/>} /> */}
             <Route path="/signup" element={<Signup/>} />
 

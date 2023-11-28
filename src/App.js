@@ -24,7 +24,8 @@ const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
       <AppNav/>
       {/* // 18:46 przez props przepuszczam do Component AppRoutes setter funkcje referencje*/}
       {/* <AppRoutes/>  */}
-      <AppRoutes setUser={setUser}/> 
+        {/* // 28:49 App: przekazuje obiekt user chce wiedziec czy istnieje */}
+      <AppRoutes user={user} setUser={setUser}/> 
       {/* //do routes przepuszczam */}
     </div>
   );

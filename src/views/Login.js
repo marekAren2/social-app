@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./Login.css"
 import axios from "axios";
+// 30:11 obiejt navigate z react-router- wbudowany przekierowuje do
+import { Navigate } from "react-router-dom";
+import Home from "./Home";
 
 // 19:27 wracam do component Login i ustawiam props
 const Login = (props) => {
@@ -60,7 +63,9 @@ const Login = (props) => {
             setLoginMessage(res.data.username[0])
           } else if (Array.isArray(res.data.password)){
             setLoginMessage(res.data.password[0])
-          } else if (Array.isArray(res.data.error)){
+          //28:14 poprawione bez array jesli jest wartosc error true
+          // } else if (Array.isArray(res.data.error)){
+          } else if (res.data.error){
             setLoginMessage('incorrect username or password')
             //27:13
           } else
@@ -94,7 +99,11 @@ const Login = (props) => {
 
   return (
     <div className="login">
-      
+      {/* // 29:34 jezeli user z props bedzie nie null wykonaj to co po prawej stronie*/}
+      {/* // 31:00 its work? */}
+       {/* // 30:26 co robie zle z h3 w props.user chyba nie ma nic? jak dzial ctrl i alt na prawy myszy na obiekcie */}
+       {/* <h3>{'props.user' ,props.user}</h3> */} jsx not coma . use
+      {props.user && <Navigate to="/"/>}
       {/* <form className="formLogin"  */}
       {/* // : when was change, zorientowałem sie w i change w 23:54 maybe now changes ? */}
       <form  onSubmit={handleSubmit} className="formLogin">
