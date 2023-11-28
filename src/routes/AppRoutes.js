@@ -6,12 +6,15 @@ import Signup from "../views/Signup";
 
 
 
-
-const AppRoutes = () => {
+// 18:54 wstawiam props
+const AppRoutes = (props) => {
+// const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path="/login" element={<Login/>} />
+            {/* // 19:12 przez props do Login */}
+            <Route path="/login" element={<Login setUser={props.setUser} />} />
+            {/* <Route path="/login" element={<Login/>} /> */}
             <Route path="/signup" element={<Signup/>} />
 
         </Routes>
