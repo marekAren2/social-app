@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Login.css"
 import axios from "axios";
-// 30:11 obiejt navigate z react-router- wbudowany przekierowuje do
+// 30:11 obiekt navigate z react-router- wbudowany przekierowuje do
 import { Navigate } from "react-router-dom";
 import Home from "./Home";
 
@@ -105,9 +105,10 @@ const Login = (props) => {
     <div className="login">
       {/* // 29:34 jezeli user z props bedzie nie null wykonaj to co po prawej stronie*/}
       {/* // 31:00 its work? */}
-       {/* // 30:26 co robie zle z h3 w props.user chyba nie ma nic? jak dzial ctrl i alt na prawy myszy na obiekcie */}
+       {/* // 30:26 co robie zle z h3 w props.user chyba nie ma nic? jak działa ctrl i alt na prawy myszy na obiekcie */}
        {/* <h3>{'props.user' ,props.user}</h3> */} 
        {/* jsx not coma . use */}
+      {/* // 30:26 this option doesn't allow me to login */}
       {props.user && <Navigate to="/"/>}
       {/* <form className="formLogin"  */}
       {/* // : when was change, zorientowałem sie w i change w 23:54 maybe now changes ? */}
