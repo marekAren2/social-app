@@ -1,0 +1,20 @@
+/* // do zrobienia klasy dopisac potestowac */
+
+/* // v28 04:46  stylowanie zrob bo skok */
+/* // 04:50 */
+.addPostForm {
+    max-width: 600;
+    margin: auto;
+    padding: 5px;
+    border: 1px solid black;
+    text-align: right;
+}
+
+
+.addPostForm  textarea {
+
+width: 100%;
+padding: 5px;
+/* //v28 6:40 rozciaganie tylko w pionie */
+resize: vertical;
+}

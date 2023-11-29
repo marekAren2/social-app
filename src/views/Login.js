@@ -70,22 +70,24 @@ const Login = (props) => {
           } else if (res.data.error){
             setLoginMessage('incorrect username or password')
             //27:13
-          } else
-          // 27:54 wreszcie czysci napis
-          setLoginMessage('')
-          props.setUser(res.data);  
+            // 29.11 po konsultacji brak klamry w else
+          } else {
+            // 27:54 wreszcie czysci napis
+            setLoginMessage('')
+            props.setUser(res.data);  
             // 20:11 wstawianie do LocaStorage dokoncz opis
-          // localStorage.setItem('user', JSON.stringify(res.data));
-          localStorage.setItem('user', JSON.stringify(res.data)); 
+            // localStorage.setItem('user', JSON.stringify(res.data));
+            localStorage.setItem('user', JSON.stringify(res.data)); 
             //15:28 opis
             // 15:07 now (chwilowo) zamiast
-          console.log(res.data);
+            console.log(res.data);
             // 19:37 czary mary przekazywanie props - wstawic this user do stanu
             // DO: mam blad props.setUser is not a function!!
-          // props.setUser(res.data);
+            // props.setUser(res.data);
             //23: obsluga błędów error
-           //  setPosts(res.data)
-          // console.log('dostaje jwt_token');
+            //  setPosts(res.data)
+            // console.log('dostaje jwt_token');
+          } 
         })
         .catch((error) => {
             console.warn(error);

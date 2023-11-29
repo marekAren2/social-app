@@ -1,3 +1,8 @@
+/* // 29.11 po konsultacji, zeby input y nie wyjezdzały */
+/* // nie wlicza sie padding do szerokosci */
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -22,3 +27,4 @@ a {
   background-color: #00538a;
   cursor: pointer;
 }
+

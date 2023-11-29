@@ -11,7 +11,7 @@ const AppRoutes = (props) => {
 // const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home user={props.user}/>} />
             {/* // 19:12 przez props do Login */}
             {/* // 29:02 w AppRouters do Loginu user */}
             <Route path="/login" element={<Login user={props.user } setUser={props.setUser} />} />

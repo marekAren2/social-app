@@ -17,7 +17,7 @@ function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   //18:36 now null ostatecznie pojawi sie cos innego
   // < 34:05 powtorz jeszcze raz podpowiedzi z UI podpowiedz Authorization ;wyjasnij zapis and error
-  // dopiero po tym zapisie 0:35 28.11 home one w menu now ,disappear pozostale menu .kiedy wpisywalem warunki sprawdz what don't work teraz sie refresh !!! cos tu nie gra 
+  // dopiero po tym zapisie 0:35 28.11 home one w menu now ,disappear pozostałe menu .kiedy wpisywałem warunki sprawdz what don't work teraz sie refresh !!! cos tu nie gra 
   axios.defaults.headers.common['Authorization'] = "Bearer " + (user ? user.jwt_token : "")
   // 18:25 user setUser
   //22:17 przy starcie pobieram z localStorage w f12/aplikacja

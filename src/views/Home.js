@@ -2,8 +2,10 @@ import "./Home.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Post from "../components/Post";
+import { AddPost } from "../components/AdPost";
 
-const Home = () => {
+// v27 06:21 insert props
+const Home = (props) => {
     
     const [posts, setPosts] = useState([]);
 
@@ -46,12 +48,26 @@ const Home = () => {
 
     useEffect(()=>{
         getLatestPosts();
-            
-    }, [])
+         // v27 06:32 w tablicy zaleznosci przekazanie zmiany props
+         // jak sie cos tu zmieni: przekaze zmiane props   
+         //after:  logout have null; login have obiekt; logout - null
+         // to wywoła sie getLatestPosts()
+         // 07:04refresh widok ale jak? ASK:
+         // wpis do tablicy zaleznosci useEffect powoduje wywolanie
+        //   go po kazdej zmianie props.uses precisely (exactly) calls function :getLatestPosts()
+        // login daje obiekt w user przekazany przez pops: props.user 
+        // ta zmiana wywołuje useEffect and in :funkcje getLatestPosts()
+    }, [props.user])
     
     console.log('w useEffect',posts);
     return (
         <div className="home">
+            {/* // v28 03:31 przed lista postów dodamy component AddPost */}
+            {/* // display form only for login user */}
+            {/* // 04:00 renderowanie warunkowe */}
+            {/* // przemysl wykorzystanie tego mechanizmu 3:42 */}
+            {/* // v28 04:46  stylowanie zrob bo skok */}
+            {props.user && <AddPost/>}
             <div className="postList">
                 {posts.map(post => {
                         return (
