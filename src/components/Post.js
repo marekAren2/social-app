@@ -12,14 +12,18 @@ const Post = (props) => {
     let postObject= props.post;
 
     const [likesCount, setLikesCount] = useState (postObject.likes.length)
-    // 11:05 wiele modeli nalozonych na siebie chcemy zeby tylko jesen sie wyswietlal
+    // 11:05 wiele modeli nałożonych na siebie chcemy zeby tylko jeden sie wyswietlał
     //o co chodzi?
+    // 11:19 useState default set  false 11:38
+    const [deleteModalVisible, setDeleteModalVisible ] = useState(false)
 
     // 5:35 funkcja deletePost(id post)
     const deletePost = (id) => {
-     axios.post('http://akademia108.pl/api/social-app/post/delete')
+     axios.post('http://akademia108.pl/api/social-app/post/delete',{post_id: id})
      .then((res)=>{
-        //co tu? <7:57 teras confirm delete?
+        //co tu? <7:57 teraz confirm delete?
+        console.log('res',res);
+
      }) 
      .catch((error)=>{
         console.warn(error);
@@ -47,7 +51,8 @@ const Post = (props) => {
                 <div className="likes">
                     {/* // v29 01:27 czemu button do likes */}
                     {/* //3:50 props.user?.username wtedy moze byc null */}
-                    {props.user?.username === props.post.user.username && <button className="btn">Delete</button> }
+                    {/* // 12:27 do buttona onClick z funkcja czy z funkcja() (z errora wynika ze ma byc funkcja) ASK: */}
+                    {props.user?.username === props.post.user.username && <button onClick={()=>{setDeleteModalVisible(true)}} className="btn">Delete</button> }
                     {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
                     {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
                     {likesCount}</div> 
@@ -61,12 +66,19 @@ const Post = (props) => {
             {/* <p>{postObject.content}</p> */}
             {/* <p className="likeFooter">{postObject.likes.length}</p> */}
             {/* // 7:57 */}
-            <div className="deleteConfirmation">
-                <h3>Are you sure you want to delete post?</h3>
-                {/* // 8:56 stylowanie zrob */}
-                <button className="btn yes">Yes</button>
-                <button className="btn no">No</button>
-            </div>
+            {deleteModalVisible && 
+                <div className="deleteConfirmation"> 
+                    <h3>Are you sure you want to delete post?</h3>
+                    {/* // 8:56 stylowanie zrob */}
+                    <button className="btn yes" 
+                    onClick={
+                        (id)=>{
+                            console.log('chcesz usunac posta o numerze?>>',id, '<<');
+                        }
+                    }>Yes</button>
+                    <button className="btn no">No</button>
+                </div> 
+            }
         </div>
     );
 }
