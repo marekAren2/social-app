@@ -2,6 +2,8 @@ import "./Post.css"
 import { useState } from "react";
 
 const Post = (props) => {
+    console.log("🚀 ~ file: Post.js:5 ~ props:", props)
+
     
     
     // console.log('props.post przed props',props.post);
@@ -29,8 +31,13 @@ const Post = (props) => {
                     <div className="postDate">{postObject.created_at.substring(0,10)}</div>
                 </div>
                 <div className="postContent">{postObject.content}</div>
-                <div className="likes">{likesCount}</div>    
-            </div>
+                <div className="likes">
+                    {/* // v29 01:27 czemu button do likes */}
+                    {props.user.username === props.post.user.username && <button className="btn">Delete</button> }
+                    {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
+                    {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
+                    {likesCount}</div> 
+                </div>
             
             {/* to beda postObiekty */}
             {/* {key} */}
