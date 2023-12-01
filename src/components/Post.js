@@ -2,8 +2,9 @@ import axios from "axios";
 import "./Post.css"
 import { useState } from "react";
 
-const Post = (props) => {
-    console.log("🚀 ~ file: Post.js:5 ~ props:", props)
+const Post = ( props) => {
+    // 13:41 robie // chwilowy
+    // console.log("🚀 ~ file: Post.js:5 ~ props:", props)
 
     
     
@@ -23,7 +24,17 @@ const Post = (props) => {
      .then((res)=>{
         //co tu? <7:57 teraz confirm delete?
         console.log('res',res);
-
+        //v2.9 14:59 setPost do pojedynczego posta do Post props przekazemy w Home 
+        // w res potwierdzenie usunieci przyjdzie
+        // 15:56 take old posts jako parametr przekazanego setter /funkcji
+        // 16:12 zwracam old post and filter, zwracam new table gdzie id is rozne od id delete
+        //czyli wszystkie nie usuniete
+                props.setPosts((posts)=>{
+                    // return posts.filter((posts) => post.id !== res.data.post.id) 
+                    // return posts.filter(post=>post.id !== res.data.post.id) 
+                    //16:51 post_id post.id poprawione
+                    return posts.filter(post=>post.id !== res.data.post_id) 
+                })
      }) 
      .catch((error)=>{
         console.warn(error);
@@ -71,12 +82,16 @@ const Post = (props) => {
                     <h3>Are you sure you want to delete post?</h3>
                     {/* // 8:56 stylowanie zrob */}
                     <button className="btn yes" 
-                    onClick={
-                        (id)=>{
-                            console.log('chcesz usunac posta o numerze?>>',id, '<<');
-                        }
-                    }>Yes</button>
-                    <button className="btn no">No</button>
+                    // 13:30  wywołanie funkcji: deletePost z przekazaniem id postu
+                    onClick={()=>{
+                        // console.log('usun posta o id: >>', id);
+                        console.log('usun posta o id: >>', props.post.id);
+                        deletePost(props.post.id)}}
+                    >
+                    Yes</button>
+                    <button className="btn no"
+                    onClick={()=>{setDeleteModalVisible(false)}}
+                    >No</button>
                 </div> 
             }
         </div>

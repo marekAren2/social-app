@@ -115,7 +115,8 @@ const Home = (props) => {
                            // v29 0:55 przekazanie user w map do Post
                            // 0:55 popraw key bo tu jes , kiedy byl dopisany?
                             // 0:58 jednak props.user nie zawsze ta sama nazwa
-                           <Post post={post} key={post.id} user={props.user}/>
+                            // v2.9 14:59 setPost do pojedynczego posta do Post props przekazemy w Home 
+                           <Post post={post} key={post.id} user={props.user} setPosts={setPosts}/>
                            
                             /*  <div className="post" key={post.id}>
                             <h3>{post.user.username}</h3>
