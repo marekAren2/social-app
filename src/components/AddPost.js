@@ -57,7 +57,7 @@ const [postContent, setPostContent] = useState("");
         {/* // 10:37 pytania 590 ... inaczej niz myslałem wyjasnij blad 
         //  ("Different than I thought, explain the mistake.")*/}
         {/* <form className="addPostForm" onSubmit={()=>addPost()}> */}
-            <textarea name="" id="" cols="30" rows="10" 
+            <textarea name="" id="" rows="2" 
             placeholder="Add post..."
             // v28 8:23 kazda zmiana wywoła zapisanie postContent za pomoca setPostContent
             // ASK: przeczytaj sobie co robi ta linia kaczka

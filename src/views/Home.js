@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Post from "../components/Post"; 
 // v28 9:39 po zmianie nazwy blad poprawiona docelowa nazwa
 import { AddPost } from "../components/AddPost";
+import { FollowRecommendations } from "../components/FollowRecommendations";
 
 // v27 06:21 insert props
 const Home = (props) => {
@@ -106,6 +107,10 @@ const Home = (props) => {
 
             {/* //17:01 tej funkcji getPrevPosts nie odpalamy w Home tylko przekazujemy przez props do formularz AddPost */}
             {props.user && <AddPost getPrevPosts={getPrevPosts}/>}
+            {/* // 03:12 v2.11 wyswietlany warunkowo bo dla zalogowanego user*/}
+            {/* // 3:48 propsy zalogowany user ,f.ostatnie i posts*/}
+            {props.user && <FollowRecommendations user={props.user}
+             getLatestPosts={getLatestPosts} posts={posts}/>}
             <div className="postList">
             {/* // 0:58 nie zakrecaj sie, w klamrze juz normalny JS, klamry w srodku zle */}
             {/* {console.log('przekazałem', {props.user})} */}
@@ -130,7 +135,7 @@ const Home = (props) => {
 
             </div>
             <button className="btn btnLoadMore" onClick={()=>getOldestPosts()}>  get old more...</button>
-            <button className="btn" onClick={()=>getLatestPosts()}>  get latest more...</button>
+            {/* <button className="btn" onClick={()=>getLatestPosts()}>  get latest more...</button> */}
 
         </div>
     ) 

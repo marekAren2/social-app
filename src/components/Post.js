@@ -11,13 +11,34 @@ const Post = ( props) => {
     // console.log('props.post przed props',props.post);
     // console.log('postObject przed props',postObject.id);
     let postObject= props.post;
-
+    // 10:50 useState zawiera długosc tablicy likes
+    // destrukturyzujemy go na likesCount i setter funkcje służącą do zmiany stanu zmiennej
+    // 10:13 liczymy like w likeCount() ile linii w tablicy like- tyle likes ma post:
     const [likesCount, setLikesCount] = useState (postObject.likes.length)
     // 11:05 wiele modeli nałożonych na siebie chcemy zeby tylko jeden sie wyswietlał
     //o co chodzi?
     // 11:19 useState default set  false 11:38
     const [deleteModalVisible, setDeleteModalVisible ] = useState(false)
-
+    // 3:17 ASK cos nowego z zawartoscia useState!?
+    // 4:51 like to obiekt z naszej tablicy
+    // ODP kaczka: dla kazdego elementu tablicy likes: sprawdz czy 
+    //  ( likes,.row like >>dokoncz 5:39
+    // useState bedzie zawierał stan boolean(true or false) ale:
+    // uzyskany w ten sposob : porownanie array: likes.forEach(name)=login.name
+    const [doesUserLiked, setDoesUserLiked] 
+     = useState(props.post.likes
+        // 5:12 operator znaku zapytanie zeby not error metody na undefined gdyby obiekt nie istniał
+        .filter(
+             like=>like.username === props.user?.username
+             // like ? funkcja jest rowne 0 albo 1? funkcja zwraca 0 lub 1?
+            )
+        // 6:12 przy tej logice długość ma byc 0 lub 1 przeanalizuj
+        // 5:54 Jeżeli po przefiltrowaniu nasza tablica lajków jest różna od zera, to znaczy, że aktualnie zalogowany użytkownik tego posta już zalajkował.
+        .length !==0); // pusta tablica ma długosc 0 a z 1-elementem 1.
+        // 6:05 jesli jest 0 znaczy nie zalajkował
+    
+        // console.log("🚀 ~ file: Post.js:25 ~ Post ~ doesUserLiked:", doesUserLiked);
+    
     // 5:35 funkcja deletePost(id post)
     const deletePost = (id) => {
      axios.post('http://akademia108.pl/api/social-app/post/delete',{post_id: id})
@@ -44,6 +65,26 @@ const Post = ( props) => {
     // let props.post=props;
     // console.log("🚀 ~ file: props.post.js:4 ~ props.post ~ props.post:", props.post)
     // console.log(props.post.id);
+    
+    // 7:41 likePost dwa parametry funkcja
+    const likePost = (id, isLiked ) => {
+        // 08:44 koncowka zalezy od parametru 2 z likePost(1,2)
+        // 8:50 jesli post jest juz like to doklej tutaj dislike a w innym przypadku like!
+        axios.post('http://akademia108.pl/api/social-app/post/'+ (isLiked?'dislike':'like'),{post_id: id
+        })
+        .then(()=>{
+            //10:43 jesli byl po laik-owany to dislike ,naszego like usuwamy czyli -1
+            // 10:24 ile lajkow do tej pory wstawiamy do: likesCount przez setter setLikesCount
+            // 11:05 opis dodaj do stanu 1 lub usun -1 w zaleznosci 
+            // czy do axios /post/like :1 czy /post/dislike: -1 <= isLiked? 
+            setLikesCount(likesCount+ (isLiked ? -1: 1))
+            // 11:12 czy nasz uzytkownik do tej pory like naszego posta
+            //11:28 jesli do tej pory byl polikowany to zmien to na false i na odwrot
+            setDoesUserLiked(!isLiked)
+        })
+
+    }
+    
     return (
      
         <div className="post" key={postObject.id}>
@@ -66,6 +107,22 @@ const Post = ( props) => {
                     {props.user?.username === props.post.user.username && <button onClick={()=>{setDeleteModalVisible(true)}} className="btn">Delete</button> }
                     {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
                     {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
+                    {/* // v210 1:22 kontynuuj */}
+                    {/* // v210 1:22 kontynuuj */}
+                    {/* // 6:29 prosty warunek ternary  */}
+                    {/* // 12:42 zmiana na 1 button */}
+                    {/* {doesUserLiked?
+                    <button className="btn">Dislike</button>
+                    :                    
+                    <button className="btn">Like</button>} */}
+                    {/* // 7:09 zmiana kolejnosci button do warunku czemu> */}
+                    {/* //12:26 z 2-ch przyciskow robimy jeden bedzie sprytniejsze: */}
+                    {/* // po kliku calls likePosts z (parametrami) post i czy jest aktualnie zalajkowany */}
+                    {/* // 14:49 wyswietlaj ten przycisk kiedy user zalogowany {props.user&&} */}
+                    {/* logout nie ma przycisku */}
+                    {props.user && <button className="btn" onClick={()=>likePost(props.post.id,doesUserLiked) }>{doesUserLiked? 'Dislike':'Like'}</button>}
+
+
                     {likesCount}</div> 
                 </div>
             
