@@ -1,0 +1,42 @@
+/* // 13:16 v2.11 */
+.followRecommendations {
+    
+    display: flex;
+    border: 1px solid grey;
+    /* // jak dla pozostałych poco? */
+    max-width: 600px;
+    /* // po co? */
+    margin: auto;
+    padding: 5px;
+    /* max-width: 30%; */
+    /* align-items: center; */
+    /* flex: content; */
+    /* flex-shrink: 20%; */
+    /* margin-left: 5px; */
+}
+
+.followRecommendation {
+    /* min-width: 33%; */
+    /* max-width: 33%; */
+    /* // obszar diva panelu z img i tekstem tekst zachowuje 33% a obrazki sie nakładaja */
+    width: 33%;
+    padding: 15px;
+
+    margin: 5px;
+    /* margin-right: 5px; */
+    /* max-width: 20px; */
+    /* max-height: 20px; */
+}
+
+.followRecommendation img {
+    height: 50px;
+    /* // 14:20 czemu po pierwszym wysokosci zmniejszaja sie proporcjonalnie tez na width obrazek img  */
+    width: 50px;
+    /* // okragly */
+    border-radius: 50px;
+
+}
+.followRecommendation h3 {
+    margin: 5px;
+}
+

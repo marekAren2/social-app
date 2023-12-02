@@ -3,10 +3,10 @@
 /* // v28 04:46  stylowanie zrob bo skok */
 /* // 04:50 */
 .addPostForm {
-    max-width: 600;
+    max-width: 600px;
     margin: auto;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid grey;
     text-align: right;
 }
 
