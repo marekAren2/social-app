@@ -10,11 +10,12 @@ const Login = (props) => {
 // const Login = () => {
 
     // 5:14 
+    //v212 kopiujemy stan do Signup.js
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-
+  // v212 07:54 kopiujemy funkcje handleInputChange do SignUp do pobierania z form
   const handleInputChange = (e) => {
     //7:46 brak .value
     console.log(e.target.value); 

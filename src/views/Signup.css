@@ -1,0 +1,22 @@
+/* // do 5:32 style */
+.signUp form {
+    border: 1px solid black;
+    max-width: 600px;
+    margin: auto;
+    padding: 15px;
+}
+
+.signUp form input {
+    /* // 5:55 block zeby łatwiej ustawić (kazdy element od new linii)*/
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    /* // 6:08 padding tez rozpycha inputa powyzej rozmiaru fonta */
+    padding: 5px;
+}
+
+.signUp .btn {
+    /* //po co inline-block? */
+    display: inline-block;
+    margin: 15px 0;
+}
