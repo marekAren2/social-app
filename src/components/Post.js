@@ -134,14 +134,17 @@ const Post = ( props) => {
                     )}
                     {/* // 19:25 warunkowo wyswietlamy ten button przycisk */}
                     {/* // 20:04 ogarnij te warunki jutro jeszcze raz co to znaczy to podwojne*/}
-                    {/* // 20:19 username autora musi byc rozny od naszego. zpisz nasz rozny od autora */}
+                    {/* // 20:19 username autora musi byc rozny od naszego. zapisz nasz rozny od autora */}
                     {props.user && props.user.username !== props.post.user.username &&(
                     // 21:29 ja class
                     <button className="btn"
                     // 21:37 zwracaj uwage ze funkcja skopiowana jest z (id) parametrem 
-                    //wiec trzeba przekazac skads id.wlasnie jak wziazc id? 
+                    //wiec trzeba przekazac skads id. własnie jak wziac id? 
                     // props.post.id
-                    onClick={()=>{unfollow(props.post.id)}}>Unfollow</button>)}    
+                    // v211 23:23 wysyłamy id uzytkownika ktory dodal tego posta
+                    onClick={()=>unfollow(props.post.user.id)}>Unfollow</button>)}    
+                    {/* onClick={()=>unfollow(props.post.id)}>Unfollow</button>)}     */}
+                    {/* onClick={()=>{unfollow(props.post.id)}}>Unfollow</button>)}     */}
                             {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
                             {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
                             {/* // v210 1:22 kontynuuj */}
