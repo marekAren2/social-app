@@ -108,12 +108,13 @@ const Signup = (props) => {
                 }
             }) 
         }  // 29:43 czyli czy nie ma: !(regexp: czy jest znak specjalny)
-            else if(!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test('string')) {
+            // 3.12 23:37 a string kto poda do parametru?
+            else if(!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(formData.password.trim())) {
                 // 29:43 skopiowane z "Password should have at least 6 characters"
                 validationErrors.password=true;
                 setErrors(prevErrors=>{
                     return {...prevErrors, 
-                        password: "Password must contain one of special charts: ! # @ $ % "
+                        password: "Password must contain one of special charts np: ! # @ $ % "
                     }
                 })
                 
