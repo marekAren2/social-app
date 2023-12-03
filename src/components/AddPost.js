@@ -9,7 +9,7 @@ import axios from "axios";
 // 03:24 podpinamy comp Add.. w Home
 // 17:02 tej funkcji getPrevPosts nie odpalamy w Home tylko przekazujemy przez props do formularz AddPost 
 export const AddPost=(props)=> {
-    
+    // debugger;
     // 07.48 stan default "" null
 const [postContent, setPostContent] = useState("");
     // 16:54 opis działania w Home w l:21
@@ -57,8 +57,10 @@ const [postContent, setPostContent] = useState("");
         {/* // 10:37 pytania 590 ... inaczej niz myslałem wyjasnij blad 
         //  ("Different than I thought, explain the mistake.")*/}
         {/* <form className="addPostForm" onSubmit={()=>addPost()}> */}
+            {/* <h3>{props.user.username}</h3> */}
             <textarea name="" id="" rows="2" 
-            placeholder="Add post..."
+            // 3.12 9:56 moja zmiana username z user propsem z Home i tu Duza litera pierwsza + reszta slowa doklejona bez zmian w JSX wyswietlenie w placeholderze
+            placeholder={`${(props.user.username).charAt(0).toUpperCase()}${(props.user.username).slice(1)} add post...👍`}
             // v28 8:23 kazda zmiana wywoła zapisanie postContent za pomoca setPostContent
             // ASK: przeczytaj sobie co robi ta linia kaczka
             onChange={(e)=>{setPostContent(e.target.value)}}

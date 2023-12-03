@@ -25,6 +25,7 @@ const Post = ( props) => {
     //  ( likes,.row like >>dokoncz 5:39
     // useState bedzie zawierał stan boolean(true or false) ale:
     // uzyskany w ten sposob : porownanie array: likes.forEach(name)=login.name
+    
     const [doesUserLiked, setDoesUserLiked] 
      = useState(props.post.likes
         // 5:12 operator znaku zapytanie zeby not error metody na undefined gdyby obiekt nie istniał
@@ -85,6 +86,27 @@ const Post = ( props) => {
 
     }
     
+    // v211 21:56 kopiujemy z FollowRecommendations.js: follow() na unfollow()
+    const unfollow = (id) => {
+        debugger;
+
+        axios
+        // 22:06 /disfollow    
+        // 21:37 ma byc przecinek na koncu 'id,' ? czyli jaki to format     
+        .post('https://akademia108.pl/api/social-app/follows/disfollow',
+            {leader_id: id})
+
+            .then(()=>{
+                props.getLatestPosts();
+                debugger;
+                // console.log("🚀 ~ file: FollowRecommendations.js:39 ~ .then ~ props.getLatestPosts();:", props.getLatestPosts)
+               // debugger;
+            })
+            .catch((error)=>{
+                console.warn(error);
+            })
+    }
+    
     return (
      
         <div className="post" key={postObject.id}>
@@ -95,34 +117,52 @@ const Post = ( props) => {
             <div className="postData">
                 <div className="postMeta">
                     <div className="author">{postObject.user.username}</div>
-                    {/* kiedy zostal usuniety obiekt adres czy byl moj blad chyba */}
-                    {/* <div className="author2">{postObject.user.avatar_url}</div> */}
+                        {/* kiedy zostal usuniety obiekt adres czy byl moj blad chyba */}
+                        {/* <div className="author2">{postObject.user.avatar_url}</div> */}
                     <div className="postDate">{postObject.created_at.substring(0,10)}</div>
                 </div>
                 <div className="postContent">{postObject.content}</div>
                 <div className="likes">
-                    {/* // v29 01:27 czemu button do likes */}
-                    {/* //3:50 props.user?.username wtedy moze byc null */}
-                    {/* // 12:27 do buttona onClick z funkcja czy z funkcja() (z errora wynika ze ma byc funkcja) ASK: */}
-                    {props.user?.username === props.post.user.username && <button onClick={()=>{setDeleteModalVisible(true)}} className="btn">Delete</button> }
-                    {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
-                    {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
-                    {/* // v210 1:22 kontynuuj */}
-                    {/* // v210 1:22 kontynuuj */}
-                    {/* // 6:29 prosty warunek ternary  */}
-                    {/* // 12:42 zmiana na 1 button */}
-                    {/* {doesUserLiked?
-                    <button className="btn">Dislike</button>
-                    :                    
-                    <button className="btn">Like</button>} */}
-                    {/* // 7:09 zmiana kolejnosci button do warunku czemu> */}
-                    {/* //12:26 z 2-ch przyciskow robimy jeden bedzie sprytniejsze: */}
-                    {/* // po kliku calls likePosts z (parametrami) post i czy jest aktualnie zalajkowany */}
-                    {/* // 14:49 wyswietlaj ten przycisk kiedy user zalogowany {props.user&&} */}
-                    {/* logout nie ma przycisku */}
-                    {props.user && <button className="btn" onClick={()=>likePost(props.post.id,doesUserLiked) }>{doesUserLiked? 'Dislike':'Like'}</button>}
-
-
+                        {/* // v29 01:27 czemu button do likes */}
+                        {/* //3:50 props.user?.username wtedy moze byc null */}
+                        {/* // 12:27 do buttona onClick z funkcja czy z funkcja() (z errora wynika ze ma byc funkcja) ASK: */}
+                    {props.user?.username === props.post.user.username && (
+                        <button onClick={()=>{setDeleteModalVisible(true)}} 
+                            className="btn">
+                            Delete
+                        </button> 
+                    )}
+                    {/* // 19:25 warunkowo wyswietlamy ten button przycisk */}
+                    {/* // 20:04 ogarnij te warunki jutro jeszcze raz co to znaczy to podwojne*/}
+                    {/* // 20:19 username autora musi byc rozny od naszego. zpisz nasz rozny od autora */}
+                    {props.user && props.user.username !== props.post.user.username &&(
+                    // 21:29 ja class
+                    <button className="btn"
+                    // 21:37 zwracaj uwage ze funkcja skopiowana jest z (id) parametrem 
+                    //wiec trzeba przekazac skads id.wlasnie jak wziazc id? 
+                    // props.post.id
+                    onClick={()=>{unfollow(props.post.id)}}>Unfollow</button>)}    
+                            {/* // 2:12 button wyswietla dla wszystkich chcemy przy swoich */}
+                            {/* uciekamy sie do ciekawego warunku renderowania przycisku      */}
+                            {/* // v210 1:22 kontynuuj */}
+                            {/* // v210 1:22 kontynuuj */}
+                            {/* // 6:29 prosty warunek ternary  */}
+                            {/* // 12:42 zmiana na 1 button */}
+                            {/* {doesUserLiked?
+                            <button className="btn">Dislike</button>
+                            :                    
+                            <button className="btn">Like</button>} */}
+                            {/* // 7:09 zmiana kolejnosci button do warunku czemu> */}
+                            {/* //12:26 z 2-ch przyciskow robimy jeden bedzie sprytniejsze: */}
+                            {/* // po kliku calls likePosts z (parametrami) post i czy jest aktualnie zalajkowany */}
+                            {/* // 14:49 wyswietlaj ten przycisk kiedy user zalogowany {props.user&&} */}
+                            {/* logout nie ma przycisku */}
+                            {/* // 18:28 dodaje nawias bo wczesniej brak: */}
+                    {props.user && (
+                        <button
+                            className="btn" onClick={()=>likePost(props.post.id,doesUserLiked) }>{doesUserLiked? 'Dislike':'Like'}
+                        </button>
+                    )}
                     {likesCount}</div> 
                 </div>
             

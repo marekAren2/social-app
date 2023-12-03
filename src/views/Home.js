@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Post from "../components/Post"; 
 // v28 9:39 po zmianie nazwy blad poprawiona docelowa nazwa
 import { AddPost } from "../components/AddPost";
-import { FollowRecommendations } from "../components/FollowRecommendations";
+import FollowRecommendations from "../components/FollowRecommendations";
+// import { FollowRecommendations } from "../components/FollowRecommendations";
 
 // v27 06:21 insert props
 const Home = (props) => {
@@ -106,7 +107,8 @@ const Home = (props) => {
             {/* {props.user && <AddPost />} */}
 
             {/* //17:01 tej funkcji getPrevPosts nie odpalamy w Home tylko przekazujemy przez props do formularz AddPost */}
-            {props.user && <AddPost getPrevPosts={getPrevPosts}/>}
+            {/* // 3.12 9:37 moja modyfikacja przekazanie propsem usera zalogowanego do AddPost zeby wyswietlic nazwe w placeholder */}
+            {props.user && <AddPost getPrevPosts={getPrevPosts} user={props.user}/>}
             {/* // 03:12 v2.11 wyswietlany warunkowo bo dla zalogowanego user*/}
             {/* // 3:48 propsy zalogowany user ,f.ostatnie i posts*/}
             {props.user && <FollowRecommendations user={props.user}
@@ -121,7 +123,8 @@ const Home = (props) => {
                            // 0:55 popraw key bo tu jes , kiedy byl dopisany?
                             // 0:58 jednak props.user nie zawsze ta sama nazwa
                             // v2.9 14:59 setPost do pojedynczego posta do Post props przekazemy w Home 
-                           <Post post={post} key={post.id} user={props.user} setPosts={setPosts}/>
+                           // v2.11 22:05 getLatestPosts={getLatestPosts}/> dodajemy dla unfollow()
+                           <Post post={post} key={post.id} user={props.user} setPosts={setPosts} getLatestPosts={getLatestPosts}/>
                            
                             /*  <div className="post" key={post.id}>
                             <h3>{post.user.username}</h3>

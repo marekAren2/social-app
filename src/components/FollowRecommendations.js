@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 
 //05:30 propsy new stan recomm...
-export const FollowRecommendations = (props) => {
+const FollowRecommendations = (props) => {
     const [recommendations, setRecommendations] = useState([]);
     // 6:20 losowo trzech backend proponuje
     const getRecommendations = () => {
@@ -25,7 +25,27 @@ export const FollowRecommendations = (props) => {
         getRecommendations();
     //   08:24 dlatego w propsach przekazano posts liste postow, 
     //   bo jak cos sie zmieni w postach bo sa podane w tablicy zaleznosci, to bedzie uruchomione  getRecommendations... 
-    },[props.posts])
+    },[props.posts]);
+
+    //15:23 dodamy funkcje
+    // v2.11 21:37 kopiujemy do Post jako unfollow()
+    const follow = (id) => {
+        // debugger;
+
+        axios.post('https://akademia108.pl/api/social-app/follows/follow', {leader_id: id})
+            .then(()=>{
+                // 16:52 v2.11 Follow... L:30 to jest w props skad wziac nazwe tej funkcji jak nie wiem skad props przyszedł 
+                // jak zrobic sprawdzenie 
+                props.getLatestPosts();
+                // console.log("🚀 ~ file: FollowRecommendations.js:39 ~ .then ~ props.getLatestPosts();:", props.getLatestPosts)
+               // debugger;
+            })
+            .catch((error)=>{
+                console.warn(error);
+            
+                
+            })
+    }
     
     console.log(recommendations );
     return (
@@ -36,7 +56,7 @@ export const FollowRecommendations = (props) => {
                     <img src={recommendation.avatar_url} alt={recommendation.username} />
                     {/* // 11:18 w h3 user */}
                     <h3>{recommendation.username}</h3>
-                    <button className="btn">Follow</button>
+                    <button className="btn" onClick={()=>{follow(recommendation.id)}}>Follow</button>
                     {/* // 12:26 stylujemy */}
                 </div>
             )
@@ -46,3 +66,4 @@ export const FollowRecommendations = (props) => {
         
     )
 }
+export default FollowRecommendations;
