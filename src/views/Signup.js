@@ -131,7 +131,29 @@ const Signup = (props) => {
             }) 
         }
         
-        
+        /* confirmPassword */
+        // 32:08 dlaczego kiedy rowne to blad? jesli nierowne to true
+        if (!formData.password.trim()===formData.confirmPassword.trim()) {
+            //32:01 ustawiamy true na blad
+            debugger;
+            validationErrors.confirmPassword=true;
+            setErrors(prevErrors=>{
+                return {...prevErrors, 
+                    // czyscimy komunikat bo ok
+                    confirmPassword: "Password should be the same"
+                }
+            }) 
+        } else {
+            //32:01 jesli nie ma bledu ustaw blad na false
+            debugger;
+            validationErrors.confirmPassword=false;
+            setErrors(prevErrors=>{
+                return {...prevErrors, 
+                    // czyscimy komunikat bo ok
+                    confirmPassword: ""
+                }
+            }) 
+        }
         // 17:23 funkcja bedzie zwracała 'true' jesli choc jedno pole z 4-ch bedzie true
         // 18:11 zwracamy odwrotnosc username:true czyli false 
         // 23:59 wszystkie musza byc spełnione zeby wyslac: brak bledu w kazdym z 4-ech
@@ -201,6 +223,7 @@ return (
                 {errors.password && <p>{errors.password}</p>}
                 <input type="password" name="confirmPassword" placeholder="Confirm password" 
                 onChange={handleInputChange}/>
+                {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 <button className="btn">Sign Up</button>
             </form>
         </div>
