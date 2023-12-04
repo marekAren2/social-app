@@ -46,6 +46,7 @@ const Login = (props) => {
     console.log("🚀 ~ file: Login.js:38 ~ handleSubmit ~ e.preventDefault():", e.preventDefault())
     console.log('submit');
     //axios copy from Home :ten czy wersja z concat
+    // v212 34:31 kopiujemy do Signup.js
     axios
         // zmiana na login wczesniej ale widac 15:15
         // .post("http://akademia108.pl/api/social-app/post/latest")

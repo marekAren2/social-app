@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import "./Signup.css";
 import { useState } from "react";
+import axios from "axios";
 // v212 3:32 props user z AppRoutes
 const Signup = (props) => {
     // 08:31 kopiuje stan z Login.js plus dodaje new pola :
@@ -20,8 +21,9 @@ const Signup = (props) => {
         confirmPassword: ""
     });
     // console.log("🚀 ~ file: Signup.js:22 ~ Signup ~ errors:", errors)
-
-// 14:40
+    // 37:22 new useState pusty -beda wrzucane komunikaty
+    const [signUpMessage, setSignUpMessage] = useState("");
+    // 14:40
     const validate = () => {
         let validationErrors = {
         username: false,
@@ -133,9 +135,9 @@ const Signup = (props) => {
         
         /* confirmPassword */
         // 32:08 dlaczego kiedy rowne to blad? jesli nierowne to true
-        if (!formData.password.trim()===formData.confirmPassword.trim()) {
+        if (formData.password.trim()!==formData.confirmPassword.trim()) {
             //32:01 ustawiamy true na blad
-            debugger;
+            // debugger;
             validationErrors.confirmPassword=true;
             setErrors(prevErrors=>{
                 return {...prevErrors, 
@@ -143,9 +145,9 @@ const Signup = (props) => {
                     confirmPassword: "Password should be the same"
                 }
             }) 
-        } else {
+        } else { 
             //32:01 jesli nie ma bledu ustaw blad na false
-            debugger;
+            // debugger;
             validationErrors.confirmPassword=false;
             setErrors(prevErrors=>{
                 return {...prevErrors, 
@@ -196,6 +198,34 @@ const Signup = (props) => {
         }
 
         console.log('wysyłam');
+        
+        axios
+        
+        .post("http://akademia108.pl/api/social-app/user/signup", {
+          username: formData.username,
+          // v212 35:41
+          email: formData.email,
+          password: formData.password,
+          
+        })
+        .then((res)=>{
+            console.log('res.data',res.data);
+            // 38:29 zmienna
+            let resData = res.data;
+            //39:24
+            if(resData.signedup) {
+                setSignUpMessage("Account created")
+            } else {
+                if(resData.message.username)
+                setSignUpMessage(resData.message.username[0])
+                // setSignUpMessage(resData.message.username)
+            }
+            
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+
     }
 return ( 
         // do 2:56 wczesniej opis w return jest render strony
@@ -207,6 +237,9 @@ return (
             <h2>Signup</h2>
             <form className="signUpForm"
             onSubmit={handleSubmit}>
+                {/* // 37:00 nagłowek */}
+                {/* // 37:55 warunkowe wyswietlenie jesli niepusty stan-zmienna  */}
+                {signUpMessage && <h2>{signUpMessage}</h2>}
                 {/* {{debugger}} */}
                 {/* // 19:53 blad jak obiekt w srodku? */}
                 {/* <h3>[{errors}]</h3> */}
